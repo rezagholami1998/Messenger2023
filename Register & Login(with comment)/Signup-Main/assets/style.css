@@ -1,0 +1,413 @@
+/* 
+1.Global
+2.signup-section
+3.Responsive
+4.Css For Use JavaScript
+*/
+
+/* ---------------------------------- 1.Global --------------------------------- */
+
+/* جزو سلکتور های سی اس اس */
+/* تمام عناصر اچ تی ام ال را انتخاب میکند */
+* {
+	/* برای المنت هایی که این موارد رو به صورت پیشفرض ست کردند نوسط مرورگر ما صفر میکنیم که در همه جا درست نمایش داده بشه */
+	/* فاصله بین بوردر و بیرون */
+	margin: 0;
+	/* پدینگ فاصله بین محتوا و بوردر */
+	padding: 0;
+	/* میتوان مثل بوردر مقدار داد و در بیرون از بوردر قرار میگیرند */
+	outline: none;
+	/* برای ایجاد سایه به المنت */
+	/* می توان چندین سایه رو به باکس مورد نظر داد و با کاما از هم جدا شوند */
+	/*را صفر بزاریم دور سایه تیز خواهد بود  blur radiusاگر  */
+	/* مقدار اول فاصله سایه افقی ،مقدار دوم میزان سایه عمودی و مقدار سوم تاری سایه و چهارم میزان پخش شدن سایه و پنجم رنگ سایه */
+	box-shadow: none;
+	/*برای ایجاد خط دور المنت یا همون بوردر با اندازه و نوع و رنگ مورد نظر ما  */
+	border: none;
+	/* تگ های لینک بصورت پیشفرض خط زیرش کشیده می شود برای حذف آن از این دستور استفاده می کنیم  */
+	/*می توان مکان خط رو نسبت به متن جابه جا کرد  overline underline line-through با مقدار های */
+	text-decoration: none;
+}
+/* یک دسنور یا قانون برای اضافه کردن فونت دلخواه به صفحه */
+@font-face {
+	/* نامی که برای فونت در نظر میگیریم */
+	font-family: vazir-light;
+	/* آدرس فایل فونت موردنظر رو که براش اسم می زاریم باید مشخص کنیم */
+	/* فرمت رو میزاریم که اگر مروگر پشتیبانی نکرد سراغ فایل نره */
+	src: url(fonts/Vazir-Light.woff2) format(woff2);
+}
+@font-face {
+	/* نامی که برای فونت در نظر میگیریم */
+	font-family: vazir-medium;
+	/* آدرس فایل فونت موردنظر رو که براش اسم می زاریم باید مشخص کنیم */
+	/* فرمت رو میزاریم که اگر مروگر پشتیبانی نکرد سراغ فایل نره */
+	src: url(fonts/Vazir-Medium.woff2) format(woff2);
+}
+/* با استفاده از دستور کی فریم میتوان نحوه اجرای انیمیشن ها رو تعریف کرد */
+/* در مقابل کی فریم باید نام برای انیمیشن در نظر بگیریم تا در قسمت های مختلف بتونیم ازش استفاده کنیم */
+@keyframes backInDown {
+	/* زمان شروع چگونه باشد */
+	0% {
+		/* با استفاده از این ویژگی ترنسفرم میتوان جلوه های خاص به عنصر داد */
+		/* translate مکان عنصر رو مشخص میکنه */
+		/* آدرس فایل فونت موردنظر رو که براش اسم می زاریم باید مشخص کنیم */
+		/* scale  میزان بزرگ و کوچک شدن عنصر رو مشخص میکنه */
+		/* در اینجا ابتدا عنصر در 1200- پیکسل از بالا قرار دارد و 30درصد کوچکتر از قبل میباشد */
+		transform: translateY(-1200px) scale(0.7);
+		/*از صفر تا یک مقدار میگیرد و میزان شفافیت رو مشخص میکنه  */
+		opacity: 0.7;
+	}
+	80% {
+		/* برمیگرده به جایی که بود و هنوز 30درصد کوپکتر نسبت به قبل هست از اینجا به بعد  به اندازه سابق خود برمیگردد */
+		transform: translateY(0px) scale(0.7);
+		opacity: 0.7;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	/* می توان بجای درصد از موارد زیر استفاده کرد  */
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+/* می توان با نام تگ به آن دسترسی پیدا کرد و استایل های کلی داد */
+body {
+	/* اسم فونتی که ایجاد کردیم رو صدا میزنیم */
+	font-family: "vazir-medium";
+	/*  حالت یا نحوه نمایش و یا چارچوب یک تگ رو مشخص میکنه display*/
+	/* همه ی تگ ها در  اچ تی ام ال یک چارچوب مستطیلی دارند display*/
+	/* block inline-block inline عنصر ها یا میتوانند*/
+	/* ماژول چیدمان صفحه یک بعدی flex*/
+	/*   flex برای طرح بندی صفحه وب از آن استفاده میکنیم و  با استفاده از این میتوان طرح منعطف تری داشته باشیم*/
+	/* این ویژگی رو به فلکس کانتینر میدیم */
+	display: flex;
+	/* برای تراز آیتم ها بصورت افقی استفاه می شود */
+	justify-content: center;
+	/* برای تراز آیتم ها بصورت عمودی استفاده میشود */
+	align-items: center;
+	/* عرض کل صفحه که مقادیر داده شده طبق 100 درصد عرض مرورگر است */
+	width: 100vw;
+	/* عرض کل صفحه که مقادیر داده شده طبق 100 درصد ارتفاع مرورگر است */
+	height: 100vh;
+	/* کمترین عرض در نظر گرفته شده */
+	min-width: 100vw;
+	/* سرریز رو نشون نمیده یعنی اگر محتوا بیرون بزند از پرنت خود که در اینجا بادی هست اسکرول نخورد */
+	overflow: hidden;
+	/* پس زمینه کل صفحه */
+	background: url(images/body.png);
+	/* با استفاده از این ویژگی میتوان اندازه تصویر رو مشخص کرد */
+	/* cover سعی میکنه تمام تصویر رو نمایش بده طبق عرض و ارتفاع ما */
+	background-size: cover;
+}
+/* ---------------------------------- 2.Login Section --------------------------------- */
+/* دسترسی به عنصر با استفاده از کلاس  */
+.signup-section {
+	/* ماژول چیدمان صفحه دوبعدی */
+	/* برای طرح بندی صفحه وب استفاده میشود */
+	/* این ویژگی رو به فلکس کانتینر میدیم */
+	display: grid;
+	/* تعداد ستون ها و اندازه ی هر ستون را مشخص میکند.*/
+	grid-template-columns: 400px 400px;
+	/* تعداد سطرها رو مشخص میکنه */
+	grid-template-rows: 550px;
+	/* رنگ پی زمینه ما */
+	background-color: #131619;
+	/* با استفاده از این ویژگی میتوان لبه های یک عنصر را گرد کرد */
+	border-radius: 24px;
+	/* سرریز رو نشون نمیده یعنی اگر محتوا بیرون بزند از پرنت خود که در اینجا بادی هست اسکرول نخورد */
+	overflow: hidden;
+	/* اسم انیمیشنی که ایجاد کردیم و زمان اجرای آن*/
+	animation: backInDown 2s;
+}
+/* به صورت درختی به عنصر دسترسی پیدا میکنیم */
+/* میباشد signup-section که داخل content-form یعنی  */
+.signup-section .content-form {
+	display: grid;
+	/*start & end شروع و پایان ستون ها رو مشخص میکند چون ما دو مقدار در نظر گرفتیم برای کل پرنت و ستون ها پس سه خط داریم */
+	/* اینجا از خط اول تا دوم رو به این المنت اختصاص میدهد */
+	/*  به هرکدوم از خط ها گرید لاین میگن */
+	grid-column: 1 / 2;
+	/* fr با توجه به این مقدار میتوان عرضی که داریم رو به تعداد دلخواه تقسیو و مقداردهی کنیم */
+	grid-template-columns: 1fr 6fr 1fr;
+	grid-template-rows: 50px 450px 50px;
+	background: #131619;
+}
+.signup-section .form-picture {
+	/* از گرید لاین 2 تا 3 رو درنظر میگیره*/
+	grid-column: 2 / 3;
+}
+.signup-section .form-picture img {
+	/* اولویت اول با مین بعد مکس و بعد عرض یا ارتفاع */
+	max-width: 100%;
+	min-height: 100%;
+}
+.signup-section .content-form .logo {
+	/* از گرید لاین 2 تا 4 رو درنظر میگیره */
+	grid-column: 1/4;
+}
+/*که داخلش تصویر هست a یعنی تگ  */
+/* این مدل سلکتور مستقیما به فرزند های اصلی پرنت اعمال میشود */
+/*هستند رو استایل میدهذ a در اینجا تگ های ایمیج که مستقیما فرزند تگ  */
+.signup-section .content-form .logo a>img {
+	/* مارجین 4 مقدار میگیرد که مقدار اول برای بالا  و بقیه موارد به ترتیب ساعتگرد می باشد */
+	margin: 20px 20px 0 0;
+	width: 20px;
+}
+.signup-section .content-form .content-main {
+	/* گرید لاین 2 تا 3 رو درنظر میگیره */
+	grid-column: 2/3;
+	/* الاین عمودی ما در مرگز  */
+	/* سلف یعنی خود همین المنت */
+	align-self: center;
+}
+.signup-section .content-form .content-main .heading h3 {
+	/* برای تععین اندازه متن از این روش استفاده میشود که البته از فونت سایز برای اندازه آیکون ها نیز استفاده می شود */
+	font-size: 1.25rem;
+	/* hex rgb hsl name ... برای تعیین رنگ متن از این ویژگی استفاده میکنند که رنگ ها را به چند صورت میتوان داد  */
+	color: rgb(255, 255, 255);
+	margin: 0 0 20px 0;
+}
+.signup-section .content-form .content-main .heading p {
+	color: #9b9c9e;
+}
+/* اگر چند المنت استایل مشترک داشته باشه با کاما از هم جدا میکنیم */
+.signup-section .content-form .content-main .heading h3 span,
+.signup-section .content-form .login a {
+	/* برای متن ما کل المنت رو رنگ میدیم */
+	background: -webkit-linear-gradient( #4d62e5 0%, #87ddee 45.31%, #b6f09c 100%);
+	/* رنگ روی متن رو حفظ مییکنیم */
+	-webkit-background-clip: text;
+	/* خارج از متن رو همرنگ پرنت میکنیم */
+	-webkit-text-fill-color: transparent;
+}
+.signup-section .content-form .content-main form {
+	margin: 20px 0 0;
+}
+.signup-section .content-form .content-main form .form-input {
+	/* با استفاده از پوزیشن موقعیت قرار گیری یک عنصر را مشخص میکنیم */
+	/* موقعیت نسبی نسبت به محل اولیه عنصر */
+	/* داد و داخل پرنت جابه جا کرد.د absolute وقتی این خاصیت رو برای یک المنت قرار میدیم المنت های داخل یا چایلد ها رو میتوان پوزیشن */
+	position: relative;
+	margin: 0 0 20px 0;
+}
+.signup-section .content-form .content-main form .form-input img {
+	/* با اسستفاده از این پوزیشن نسبت به پدر میتوان جابه جا کرد */
+	position: absolute;
+	/* فاصله از بالا */
+	top: 0;
+	/* فاصله از پایین */
+	bottom: 0;
+	/* فاصله از راست */
+	right: 15px;
+	width: 17px;
+	/* وقتی از بالا و پایین 0 میدیم باید مارجین رو در حالت اوتو بزاریم تا در وسط قرار بگیرد */
+	/* auto یعنی از چپ و راست وسط قرار بگیرد */
+	margin: auto;
+}
+.signup-section .content-form .content-main form .form-input input {
+	width: 100%;
+	font-size: 0.9rem;
+	padding: 10px 40px 10px 0;
+	border-radius: 8px;
+	color: #fff;
+	background: #1a1d21;
+	border: 1px solid #363a3d;
+	/* همه تگ ها در صفحه حالت باکس مدل دارند */
+	/* وقتی به تگ مورد نظر عرض و ارتفاع بدیم بعد بهش پدینگ و بوردر بدیم به عرض و ارتفاع ما اضافه میشن */
+	/* مثلا اگر عرض ما 100 پیکسل و بوردر ما 2پیکسل و پدینگ ما 2 پیکسل باشد اگر اینسپکت کنیم و روی المنت بریم اندازه واقعی ما شده108 پیکسل */
+	/* هست و مثل توضیح بالا رفتار میکنه اما با کد زیر پدینگ و بوردر جزوی از عرض و ارتفاع ما میشه  content-box  بصورت پیشفرض  */
+	box-sizing: border-box;
+}
+/* شبهعنصر میباشد که با استفاده از ان میتوان بخش های مختلف یک عنصر را انتخاب کنیم و  براش پراپرتی تعریف کنیم */
+.signup-section .content-form .content-main form input::placeholder {
+	font-family: "vazir-light";
+	font-size: 0.8rem;
+	color: #9b9c9e;
+}
+.signup-section .content-form .content-main form .social-signup .account-item img {
+	/* تراز عمودی */
+	/* عنصر را با قسمت وسط عنصر پدر تراز میکند */
+	vertical-align: middle;
+	/* میزان مارجین از سمت چپ */
+	margin-left: 5px;
+}
+.signup-section .content-form .content-main form input[type="submit"] {
+	font-family: "vazir-medium";
+	width: 100%;
+	border-radius: 12px;
+	background: rgb(182, 240, 156);
+	margin: 0 0 20px 0;
+	padding: 11px 0;
+}
+.signup-section .content-form .content-main form .form-divider {
+	/* برای مبحث واکنش گرایی از رم استفاده میشود */
+	/* به نسبت اندازه فونت ریشه صفحه rem*/
+	font-size: 0.75rem;
+	position: relative;
+	/* تراز متن که در اینجا در وسط قرار میگیرد */
+	text-align: center;
+	color: #686b6e;
+}
+/* شبه عنصر before  */
+/*  با استفاده از این شبه عنصر میتوان محتوا وارد صفحه کرد بدون اینکه تگ در صفحه وب ایجاد کنیم */
+.signup-section .content-form .content-main form .form-divider::before {
+	/* محتوای عنصر انتخابی  */
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 100px;
+	height: 1px;
+	margin: auto;
+	background-color: #363a3d;
+}
+/* شبه عنصر before  */
+/*  با استفاده از این شبه عنصر میتوان محتوا وارد صفحه کرد بدون اینکه تگ در صفحه وب ایجاد کنیم */
+.signup-section .content-form .content-main form .form-divider::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	height: 1px;
+	margin: auto;
+	background-color: #363a3d;
+}
+.signup-section .content-form .content-main form .social-signup {
+	display: flex;
+	/* space-between در اینجا دو المنت رو به سمت چپ و راست فلکس کانتینر میچسبونه */
+	justify-content: space-between;
+	margin: 20px 0 0 0;
+}
+.signup-section .content-form .content-main form .social-signup .account-item {
+	width: 140px;
+	height: 37px;
+	text-align: center;
+	border-radius: 12px;
+	background-color: #1a1d21;
+	border: 1px solid transparent;
+}
+.signup-section .content-form .content-main form .social-signup .account-item a {
+	font-family: "vazir-medium";
+	font-size: 0.8rem;
+	color: #686b6e;
+	display: block;
+	height: 100%;
+	/* با استفاده از این ویژگی میتوان فاصله مشخصی رو بین سطرهای یک متن ایجا کرد  */
+	/* در ایجا فاصله مشخصی رو میتوان بین محتوا ایجاد کرد */
+	line-height: 38px;
+}
+.signup-section .content-form .content-main form .social-signup .account-item:hover {
+	border: 1px solid #363a3d;
+}
+.signup-section .content-form .login {
+	/* گرید لاین 1 تا 4 را در نظر میگیرد برای این المنت */
+	grid-column: 1/4;
+	/* عمودی در وسط و از راست 20 چیکسل در نظر میگیرد */
+	margin: auto 20px auto 0;
+}
+.signup-section .content-form .login p {
+	font-size: 0.8rem;
+	color: #686b6e;
+}
+.signup-section .content-form .login a {
+	/* از تگ انیمیشن برای استفاده از کی فریم ها با مقادیر و ... که میخوایم استفاده میشود */
+	/*برای تکرار دایم استفاده میشود infinite در اینجا ابتدا اسم انیمیشن بعد زمان اجرا و سپس  */
+	animation: fadeIn 2s infinite;
+}
+/*------------------------------------- 3.Responsive ------------------------------------*/
+/* مدیا کوئری */
+/* اسکرین یعنی برای صفحه نمایش */
+/* برای ریسپانسیئو صفحات وب استفاده میشود */
+/* شرط این است که دستگاه هایی که عرض آنها از 768 تا 992 هست  این کد هارو اعمال میکنه */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+	/* برای این عرض مقادیر گرید کالم رو کم کردم */
+	.signup-section {
+		grid-template-columns: 350px 350px;
+	}
+}
+@media screen and (min-width: 350px) and (max-width: 768px) {
+	.signup-section {
+		grid-template-columns: 350px;
+	}
+	.signup-section .form-picture {
+		display: none;
+	}
+	.signup-section .content-form .content-main .heading {
+		text-align: center;
+	}
+	.signup-section .content-form .content-main .heading h3 {
+		font-size: 1.1rem;
+	}
+	.signup-section .content-form .content-main .heading p {
+		font-size: 0.8rem;
+	}
+}
+@media screen and (min-width: 350px) and (max-width: 992px) {
+	.signup-section .content-form .content-main form .form-divider::after {
+		width: 80px;
+	}
+	.signup-section .content-form .content-main form .form-divider::before {
+		width: 80px;
+	}
+	.signup-section .content-form .content-main form .social-signup .account-item {
+		width: 120px;
+	}
+}
+/* -------------------------------- 4.Css For Use JavaScript ------------------------------------ */
+/* اگر مقدار فیلد ها درست وارد شده باشد این کلاس توسط جاوااسکریپت اضافه میشود */
+.success {
+	/*یعنی سایه برای داخل باکس ست شود inset سایه ایجاد میکنیم برای باکس که در اینجا  */
+	box-shadow: inset 0 0 8px 0px rgb(182, 240, 156);
+}
+/* اگر مقدار فیلد ها غلط وارد شده باشد این کلاس توسط جاوااسکریپت اضافه میشود */
+.danger {
+	box-shadow: inset 0 0 8px 0px rgb(173, 72, 72);
+}
+/* استایل هایی که به المنت خطا داده شده و توسط جاوااسکریپت کلاس آن اد میشود */
+.alert-danger {
+	font-size: .85rem;
+	padding: 5px 0;
+	background: rgb(173, 72, 72);
+	/* فاصله از پایین */
+	margin-bottom: 20px;
+	color: #fff;
+	text-align: center;
+	border-radius: 12px;
+	margin-bottom: 20px;
+}
+/* چون استایل ها بجز بک گراند برای این دو مشترک بود مشترک هارو باهم دادم تا کد ها زیاد نشود */
+.loaders-validate,
+.loaders-unvalidate {
+	display: none;
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 12px;
+	margin-bottom: 10px;
+}
+.loaders-validate {
+	background: rgb(137, 207, 106);
+}
+.loaders-unvalidate {
+	background: rgb(173, 72, 72);
+}
+#show-result .spinner {
+	/*  حالت یا نحوه نمایش و یا چارچوب یک تگ رو مشخص میکنه */
+	/* همه ی تگ ها در  اچ تی ام ال یک چارچوب مستطیلی دارند */
+	/* block inline-block inline عنصر ها یا میتوانند*/
+	/* یعنی عنصر انتخابی رو در صفحه نمایش نده */
+	display: none;
+	width: 100px;
+	margin: 0 auto 10px;
+}
+/* -------------------------------------------- End ---------------------------------------- */
